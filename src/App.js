@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Switch, Route } from "react-router-dom";
+import { HashRouter as Router, Switch, Route } from "react-router-dom";
 import AdminScreen from "./components/AdminScreen";
 import PublicScreen from "./components/PublicScreen";
 import AuthProvider from "./components/Auth";
@@ -9,11 +9,13 @@ import PrivateRoute from "./components/PrivateRoute";
 function App() {
   return (
     <AuthProvider>
-      <Switch>
-        <Route exact path="/" component={PublicScreen} />
-        <Route exact path={"/login"} component={Login} />
-        <PrivateRoute exact path="/admin" component={AdminScreen} />
-      </Switch>
+      <Router>
+        <Switch>
+          <Route exact path="/" component={PublicScreen} />
+          <Route path="/login" component={Login} />
+          <PrivateRoute path="/admin" component={AdminScreen} />
+        </Switch>
+      </Router>
     </AuthProvider>
   );
 }
