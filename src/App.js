@@ -10,11 +10,9 @@ function App() {
   return (
     <AuthProvider>
       <Router>
-        <Switch>
-          <Route exact path="/" component={PublicScreen} />
-          <Route path="/login" component={Login} />
-          <PrivateRoute path="/admin" component={AdminScreen} />
-        </Switch>
+        <Route exact path="/" component={PublicScreen} />
+        <Route path="/login" component={Login} />
+        <PrivateRoute path="/admin" component={AdminScreen} />
       </Router>
     </AuthProvider>
   );
