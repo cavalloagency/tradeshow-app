@@ -1,5 +1,5 @@
 import React from "react";
-import { HashRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import AdminScreen from "./components/AdminScreen";
 import PublicScreen from "./components/PublicScreen";
 import AuthProvider from "./components/Auth";
