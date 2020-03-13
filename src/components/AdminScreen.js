@@ -55,12 +55,15 @@ export default function AdminScreen() {
             />
           )}
           {imageUri ? (
-            <ReactChromakeyedImage
-              src={imageUri}
-              findColor="#57ff52"
-              replaceColor="#00ff001C"
-              tolerance={20}
-            />
+            <div style={{ backgroundColor: "lightblue" }}>
+              <p>Chromakeyed Image</p>
+              <ReactChromakeyedImage
+                src={imageUri}
+                findColor="#57ff52"
+                replaceColor="#00ff001C"
+                tolerance={100}
+              />
+            </div>
           ) : null}
         </div>
       );
