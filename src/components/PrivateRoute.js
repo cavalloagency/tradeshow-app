@@ -8,15 +8,19 @@ const PrivateRoute = ({ component: RouteComponent, ...rest }) => {
   return (
     <Route
       {...rest}
-      render={routeProps =>
+      render={routeProps => <RouteComponent {...routeProps} />}
+    />
+  );
+};
+
+export default PrivateRoute;
+
+/*
+render={routeProps =>
         !!currentUser ? (
           <RouteComponent {...routeProps} />
         ) : (
           <Redirect to={"/login"} />
         )
       }
-    />
-  );
-};
-
-export default PrivateRoute;
+*/

@@ -7,7 +7,9 @@ export default function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
-    auth().onAuthStateChanged(setCurrentUser);
+    auth().onAuthStateChanged(user => {
+      if (user) setCurrentUser(user);
+    });
   }, []);
 
   return (
