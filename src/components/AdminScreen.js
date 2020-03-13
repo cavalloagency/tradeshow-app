@@ -41,14 +41,7 @@ export default function AdminScreen() {
       return (
         <div>
           {imageUri ? (
-            <div
-              style={{
-                border: "5px solid black",
-                width: "80%",
-                margin: "auto",
-                alignSelf: "center"
-              }}
-            >
+            <div>
               <img src={imageUri} alt="userImage" />
               <button onClick={handleUsePhoto}>Use Photo</button>
               <button onClick={handleTakeAnotherPhoto}>
@@ -56,19 +49,10 @@ export default function AdminScreen() {
               </button>
             </div>
           ) : (
-            <div
-              style={{
-                border: "5px solid black",
-                width: "80%",
-                margin: "auto",
-                alignSelf: "center"
-              }}
-            >
-              <Camera
-                isFullscreen={false}
-                onTakePhotoAnimationDone={handleTakePhoto}
-              />
-            </div>
+            <Camera
+              isFullscreen={false}
+              onTakePhotoAnimationDone={handleTakePhoto}
+            />
           )}
           {imageUri ? (
             <ReactChromakeyedImage
@@ -78,7 +62,6 @@ export default function AdminScreen() {
               tolerance={20}
             />
           ) : null}
-          <canvas id="c1" width="1920" height="1080"></canvas>
         </div>
       );
     } else if (stepState.stepTwo) {
