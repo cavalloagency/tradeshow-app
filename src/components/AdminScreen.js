@@ -5,6 +5,7 @@ import Personalization from "./Admin/Personalization";
 import PatientsGrid from "./Admin/PatientsGrid";
 import Signout from "./Signout";
 import AdBuilding from "./Admin/AdBuilding";
+import ReactChromakeyedImage from "react-chromakeyed-image";
 
 export default function AdminScreen() {
   const [imageUri, setImageUri] = useState(null);
@@ -69,6 +70,15 @@ export default function AdminScreen() {
               />
             </div>
           )}
+          {imageUri ? (
+            <ReactChromakeyedImage
+              src={imageUri}
+              findColor="#57ff52"
+              replaceColor="#00ff001C"
+              tolerance={20}
+            />
+          ) : null}
+          <canvas id="c1" width="1920" height="1080"></canvas>
         </div>
       );
     } else if (stepState.stepTwo) {
