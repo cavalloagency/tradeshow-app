@@ -42,7 +42,7 @@ function rgb2hsv() {
 }
 
 export const filterImage = () => {
-  var c = document.getElementById("c");
+  var c = document.getElementById("myCanvas");
   var ctx = c.getContext("2d");
   var img = document.getElementById("user-image");
   if (img) {
