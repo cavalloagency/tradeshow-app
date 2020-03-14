@@ -1,12 +1,3 @@
-let l_r = 131,
-  l_g = 190,
-  l_b = 137,
-  d_r = 74,
-  d_g = 148,
-  d_b = 100;
-
-let tolerance = 0.05;
-
 function rgb2hsv() {
   var rr,
     gg,
@@ -22,7 +13,7 @@ function rgb2hsv() {
       return (v - c) / 6 / diff + 1 / 2;
     };
 
-  if (diff == 0) {
+  if (diff === 0) {
     h = s = 0;
   } else {
     s = diff / v;
@@ -50,13 +41,6 @@ function rgb2hsv() {
   };
 }
 
-const calculateDistance = (c, min, max) => {
-  if (c < min) return min - c;
-  if (c > max) return c - max;
-
-  return 0;
-};
-
 export const filterImage = () => {
   var c = document.getElementById("myCanvas");
   var ctx = c.getContext("2d");
@@ -64,11 +48,11 @@ export const filterImage = () => {
   if (img) {
     ctx.drawImage(img, 0, 0);
 
-    let frame = ctx.getImageData(0, 0, 1400, 1400);
+    let frame = ctx.getImageData(0, 0, 400, 400);
     let reference = rgb2hsv(frame.data[0], frame.data[1], frame.data[2]);
-    console.log(frame);
+
     let l = frame.data.length / 4;
-    console.log("[L value]", l);
+
     for (let i = 0; i < l; i++) {
       let r = frame.data[i * 4 + 0];
       let g = frame.data[i * 4 + 1];
@@ -81,9 +65,9 @@ export const filterImage = () => {
         frame.data[i * 4 + 3] = 0;
       }
     }
-    const imageURL = c
-      .toDataURL("image/png")
-      .replace("image/png", "image/octet-stream");
+    ctx.putImageData(frame, 0, 0);
+    const imageURL = c.toDataURL("image/png");
+    // .replace("image/png", "image/octet-stream");
     return imageURL;
   }
 };

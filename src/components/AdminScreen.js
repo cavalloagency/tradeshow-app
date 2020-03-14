@@ -83,6 +83,7 @@ export default function AdminScreen() {
       {stepDisplay()}
       <canvas
         id="myCanvas"
+        style={{ display: "none" }}
         // width="1400"
         // height="1400"
         // style={{ border: "1px solid black" }}
