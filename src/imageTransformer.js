@@ -48,7 +48,7 @@ export const filterImage = () => {
   if (img) {
     ctx.drawImage(img, 0, 0);
 
-    let frame = ctx.getImageData(0, 0, img.clientWidth, img.clientHeight);
+    let frame = ctx.getImageData(0, 0, 1400, 1400);
     let reference = rgb2hsv(frame.data[0], frame.data[1], frame.data[2]);
 
     let l = frame.data.length / 4;
@@ -65,7 +65,7 @@ export const filterImage = () => {
         frame.data[i * 4 + 3] = 0;
       }
     }
-    ctx.putImageData(frame, 0, 0, 0, 0, 400, 400);
+    ctx.putImageData(frame, 0, 0);
     const imageURL = c.toDataURL("image/png");
     // .replace("image/png", "image/octet-stream");
     return imageURL;

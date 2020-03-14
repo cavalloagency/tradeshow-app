@@ -48,7 +48,13 @@ export default function AdminScreen() {
         <div>
           {imageUri ? (
             <div>
-              <img src={imageUri} alt="userImage" id="user-image" />
+              <img
+                width="600"
+                height="600"
+                src={imageUri}
+                alt="userImage"
+                id="user-image"
+              />
               <button onClick={handleUsePhoto}>Use Photo</button>
               <button onClick={handleTakeAnotherPhoto}>
                 Take another photo
@@ -79,7 +85,6 @@ export default function AdminScreen() {
   return (
     <div style={{ backgroundColor: "#ec008c", height: "100vh" }}>
       <Signout />
-      <p>{imageUri}</p>
       {stepDisplay()}
       <canvas
         id="myCanvas"
