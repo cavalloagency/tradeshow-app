@@ -48,7 +48,7 @@ export const filterImage = () => {
   if (img) {
     ctx.drawImage(img, 0, 0);
 
-    let frame = ctx.getImageData(0, 0, 400, 400);
+    let frame = ctx.getImageData(0, 0, img.clientWidth, img.clientHeight);
     let reference = rgb2hsv(frame.data[0], frame.data[1], frame.data[2]);
 
     let l = frame.data.length / 4;
