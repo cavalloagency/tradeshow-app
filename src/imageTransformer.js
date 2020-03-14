@@ -57,12 +57,12 @@ const calculateDistance = (c, min, max) => {
   return 0;
 };
 
-export const filterImage = imgUri => {
+export const filterImage = () => {
   var c = document.getElementById("myCanvas");
   var ctx = c.getContext("2d");
   var img = document.getElementById("user-image");
   if (img) {
-    ctx.drawImage(imgUri, 0, 0);
+    ctx.drawImage(img, 0, 0);
 
     let frame = ctx.getImageData(0, 0, 1400, 1400);
     let reference = rgb2hsv(frame.data[0], frame.data[1], frame.data[2]);

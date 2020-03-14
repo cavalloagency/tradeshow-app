@@ -25,7 +25,7 @@ export default function AdminScreen() {
   }
 
   const handleUsePhoto = () => {
-    const filteredImageUri = filterImage(imageUri);
+    const filteredImageUri = filterImage();
     setImageUri(filteredImageUri);
 
     const stepState = { ...adCreationSteps };
