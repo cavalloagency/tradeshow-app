@@ -20,17 +20,20 @@ export default function AdminScreen() {
 
   function handleTakePhoto(dataUri) {
     // Do stuff with the photo...
+
     setImageUri(dataUri);
-    filterImage();
   }
 
   const handleUsePhoto = () => {
+    const filteredImageUri = filterImage(imageUri);
+    setImageUri(filteredImageUri);
+
     const stepState = { ...adCreationSteps };
 
     stepState.stepOne = false;
     stepState.stepTwo = true;
 
-    setAdCreationSteps(stepState);
+    // setAdCreationSteps(stepState);
   };
 
   const handleTakeAnotherPhoto = () => {

@@ -57,34 +57,33 @@ const calculateDistance = (c, min, max) => {
   return 0;
 };
 
-export const filterImage = () => {
+export const filterImage = imgUri => {
   var c = document.getElementById("myCanvas");
   var ctx = c.getContext("2d");
-  var c2 = document.getElementById("myCanvas2");
-  var ctx2 = c.getContext("2d");
   var img = document.getElementById("user-image");
-  if (img) ctx.drawImage(img, 0, 0);
+  if (img) {
+    ctx.drawImage(imgUri, 0, 0);
 
-  let frame = ctx.getImageData(0, 0, 1400, 1400);
-  let reference = rgb2hsv(frame.data[0], frame.data[1], frame.data[2]);
-  console.log(frame);
-  let l = frame.data.length / 4;
-  console.log("[L value]", l);
-  for (let i = 0; i < l; i++) {
-    let r = frame.data[i * 4 + 0];
-    let g = frame.data[i * 4 + 1];
-    let b = frame.data[i * 4 + 2];
-    let hsv = rgb2hsv(r, g, b);
+    let frame = ctx.getImageData(0, 0, 1400, 1400);
+    let reference = rgb2hsv(frame.data[0], frame.data[1], frame.data[2]);
+    console.log(frame);
+    let l = frame.data.length / 4;
+    console.log("[L value]", l);
+    for (let i = 0; i < l; i++) {
+      let r = frame.data[i * 4 + 0];
+      let g = frame.data[i * 4 + 1];
+      let b = frame.data[i * 4 + 2];
+      let hsv = rgb2hsv(r, g, b);
 
-    let hueDifference = Math.abs(hsv.h - reference.h);
+      let hueDifference = Math.abs(hsv.h - reference.h);
 
-    if (hueDifference < 16 && hsv.v > 33 && hsv.s > 40) {
-      frame.data[i * 4 + 3] = 0;
+      if (hueDifference < 16 && hsv.v > 33 && hsv.s > 40) {
+        frame.data[i * 4 + 3] = 0;
+      }
     }
+    const imageURL = c
+      .toDataURL("image/png")
+      .replace("image/png", "image/octet-stream");
+    return imageURL;
   }
-  ctx2.putImageData(frame, 0, 0);
-  const imageURL = c
-    .toDataURL("image/png")
-    .replace("image/png", "image/octet-stream");
-  return imageURL;
 };
