@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Camera from "react-html5-camera-photo";
 import "react-html5-camera-photo/build/css/index.css";
 import Personalization from "./Admin/Personalization";
 import PatientsGrid from "./Admin/PatientsGrid";
 import Signout from "./Signout";
 import AdBuilding from "./Admin/AdBuilding";
-import ReactChromakeyedImage from "react-chromakeyed-image";
+
+import profileImage from "../../src/assets/images/photo_2020-03-14_10-52-10.jpg";
+import { filterImage } from "../imageTransformer";
 
 export default function AdminScreen() {
   const [imageUri, setImageUri] = useState(null);
@@ -19,6 +21,7 @@ export default function AdminScreen() {
   function handleTakePhoto(dataUri) {
     // Do stuff with the photo...
     setImageUri(dataUri);
+    filterImage();
   }
 
   const handleUsePhoto = () => {
@@ -42,7 +45,7 @@ export default function AdminScreen() {
         <div>
           {imageUri ? (
             <div>
-              <img src={imageUri} alt="userImage" />
+              <img src={imageUri} alt="userImage" id="user-image" />
               <button onClick={handleUsePhoto}>Use Photo</button>
               <button onClick={handleTakeAnotherPhoto}>
                 Take another photo
@@ -57,12 +60,6 @@ export default function AdminScreen() {
           {imageUri ? (
             <div style={{ backgroundColor: "lightblue" }}>
               <p>Chromakeyed Image</p>
-              <ReactChromakeyedImage
-                src={imageUri}
-                findColor="#57ff52"
-                replaceColor="#00ff001C"
-                tolerance={100}
-              />
             </div>
           ) : null}
         </div>
@@ -81,6 +78,12 @@ export default function AdminScreen() {
       <Signout />
       <p>{imageUri}</p>
       {stepDisplay()}
+      <canvas
+        id="myCanvas"
+        // width="1400"
+        // height="1400"
+        // style={{ border: "1px solid black" }}
+      ></canvas>
     </div>
   );
 }
