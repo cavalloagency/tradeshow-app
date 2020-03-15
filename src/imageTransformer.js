@@ -46,11 +46,11 @@ export const filterImage = () => {
   var ctx = c.getContext("2d");
   var img = document.getElementById("user-image");
   if (img) {
-    c.width = img.clientWidth;
-    c.height = img.clientHeight;
+    c.width = 1920;
+    c.height = 1080;
     ctx.drawImage(img, 0, 0, 1920, 1080);
 
-    let frame = ctx.getImageData(0, 0, img.clientWidth, img.clientHeight);
+    let frame = ctx.getImageData(0, 0, 1920, 1080);
     let reference = rgb2hsv(frame.data[0], frame.data[1], frame.data[2]);
 
     let l = frame.data.length / 4;
