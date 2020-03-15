@@ -24,10 +24,6 @@ export default function AdminScreen() {
     setImageUri(dataUri);
   }
 
-  useEffect(() => {
-    setImageUri(profileImage);
-  }, []);
-
   const handleUsePhoto = () => {
     const filteredImageUri = filterImage();
     setImageUri(filteredImageUri);
@@ -70,11 +66,6 @@ export default function AdminScreen() {
               onTakePhotoAnimationDone={handleTakePhoto}
             />
           )}
-          {imageUri ? (
-            <div style={{ backgroundColor: "lightblue" }}>
-              <p>Chromakeyed Image</p>
-            </div>
-          ) : null}
           <canvas id="myCanvas" style={{ display: "none" }}></canvas>
         </div>
       );
