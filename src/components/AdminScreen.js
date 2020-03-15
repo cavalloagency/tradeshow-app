@@ -49,7 +49,7 @@ export default function AdminScreen() {
             <div>
               <img
                 src={imageUri}
-                style={{ width: "100%", height: "100%" }}
+                style={{ width: "100%", height: "100vh" }}
                 alt="userImage"
               />
               <button onClick={handleUsePhoto}>Use Photo</button>
@@ -86,7 +86,7 @@ export default function AdminScreen() {
   };
 
   return (
-    <div style={{ height: "100vh" }}>
+    <div style={{ height: "100vh", backgroundColor: "lightblue" }}>
       <Signout />
       <p>Test Message</p>
       {stepDisplay()}
