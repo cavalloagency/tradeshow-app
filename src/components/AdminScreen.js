@@ -81,6 +81,7 @@ export default function AdminScreen() {
   return (
     <div style={{ backgroundColor: "#ec008c", height: "100vh" }}>
       <Signout />
+      <p>Test Message</p>
       {stepDisplay()}
     </div>
   );
