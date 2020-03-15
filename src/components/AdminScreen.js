@@ -10,7 +10,7 @@ import profileImage from "../../src/assets/images/photo_2020-03-14_10-52-10.jpg"
 import { filterImage } from "../imageTransformer";
 
 export default function AdminScreen() {
-  const [imageUri, setImageUri] = useState(null);
+  const [imageUri, setImageUri] = useState("i");
   const [adCreationSteps, setAdCreationSteps] = useState({
     stepOne: true,
     stepTwo: false,
@@ -23,6 +23,10 @@ export default function AdminScreen() {
 
     setImageUri(dataUri);
   }
+
+  useEffect(() => {
+    setImageUri(profileImage);
+  }, []);
 
   const handleUsePhoto = () => {
     const filteredImageUri = filterImage();
@@ -71,6 +75,7 @@ export default function AdminScreen() {
               <p>Chromakeyed Image</p>
             </div>
           ) : null}
+          <canvas id="myCanvas" style={{ display: "none" }}></canvas>
         </div>
       );
     } else if (stepState.stepTwo) {
@@ -86,13 +91,6 @@ export default function AdminScreen() {
     <div style={{ backgroundColor: "#ec008c", height: "100vh" }}>
       <Signout />
       {stepDisplay()}
-      <canvas
-        id="myCanvas"
-        style={{ display: "none" }}
-        // width="1400"
-        // height="1400"
-        // style={{ border: "1px solid black" }}
-      ></canvas>
     </div>
   );
 }
