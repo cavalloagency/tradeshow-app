@@ -44,7 +44,7 @@ export default function AdminScreen() {
 
     if (stepState.stepOne) {
       return (
-        <div>
+        <div style={{ height: "100%" }}>
           {imageUri ? (
             <div>
               <img
