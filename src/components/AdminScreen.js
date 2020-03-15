@@ -46,8 +46,12 @@ export default function AdminScreen() {
       return (
         <div>
           {imageUri ? (
-            <div style={{ width: "80%", height: "80%" }}>
-              <img src={imageUri} alt="userImage" />
+            <div>
+              <img
+                src={imageUri}
+                style={{ width: "80%", height: "80%" }}
+                alt="userImage"
+              />
               <button onClick={handleUsePhoto}>Use Photo</button>
               <button onClick={handleTakeAnotherPhoto}>
                 Take another photo
@@ -66,8 +70,6 @@ export default function AdminScreen() {
           <img
             src={templateImage}
             style={{ display: "none" }}
-            width="1920"
-            height="1080"
             alt="template"
             id="user-image"
           />
