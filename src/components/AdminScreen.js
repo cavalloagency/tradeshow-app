@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
-import Camera from "react-html5-camera-photo";
+import Camera, { IMAGE_TYPES } from "react-html5-camera-photo";
 import "react-html5-camera-photo/build/css/index.css";
 import Personalization from "./Admin/Personalization";
 import PatientsGrid from "./Admin/PatientsGrid";
 import Signout from "./Signout";
 import AdBuilding from "./Admin/AdBuilding";
-
-import profileImage from "../../src/assets/images/photo_2020-03-14_10-52-10.jpg";
 import { filterImage } from "../imageTransformer";
 
 export default function AdminScreen() {
@@ -57,13 +55,17 @@ export default function AdminScreen() {
             </div>
           ) : (
             <Camera
-              isFullscreen={false}
+              isFullscreen={true}
               onTakePhotoAnimationDone={handleTakePhoto}
+              imageType={IMAGE_TYPES.PNG}
+              imageCompression={0.97}
+              isMaxResolution={true}
+              idealResolution={{ width: 1920, height: 1080 }}
             />
           )}
           <img
             src={templateImage}
-            style={{ display: "none" }}
+            style={{ width: "80%", height: "80%", display: "none" }}
             alt="template"
             id="user-image"
           />
@@ -80,7 +82,7 @@ export default function AdminScreen() {
   };
 
   return (
-    <div style={{ backgroundColor: "#ec008c", height: "100vh" }}>
+    <div style={{ height: "100vh" }}>
       <Signout />
       <p>Test Message</p>
       {stepDisplay()}
