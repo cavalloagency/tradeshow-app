@@ -10,7 +10,7 @@ import profileImage from "../../src/assets/images/photo_2020-03-14_10-52-10.jpg"
 import { filterImage } from "../imageTransformer";
 
 export default function AdminScreen() {
-  const [imageUri, setImageUri] = useState("i");
+  const [imageUri, setImageUri] = useState(null);
   const [adCreationSteps, setAdCreationSteps] = useState({
     stepOne: true,
     stepTwo: false,
