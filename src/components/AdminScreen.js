@@ -11,6 +11,8 @@ import { filterImage } from "../imageTransformer";
 
 export default function AdminScreen() {
   const [imageUri, setImageUri] = useState(null);
+  const [templateImage, setTemplateImage] = useState(null);
+
   const [adCreationSteps, setAdCreationSteps] = useState({
     stepOne: true,
     stepTwo: false,
@@ -21,13 +23,12 @@ export default function AdminScreen() {
   function handleTakePhoto(dataUri) {
     // Do stuff with the photo...
 
-    setImageUri(dataUri);
+    setTemplateImage(dataUri);
+    const filteredImageUri = filterImage();
+    setImageUri(filteredImageUri);
   }
 
   const handleUsePhoto = () => {
-    const filteredImageUri = filterImage();
-    setImageUri(filteredImageUri);
-
     const stepState = { ...adCreationSteps };
 
     stepState.stepOne = false;
@@ -47,14 +48,8 @@ export default function AdminScreen() {
       return (
         <div>
           {imageUri ? (
-            <div>
-              <img
-                width="600"
-                height="600"
-                src={imageUri}
-                alt="userImage"
-                id="user-image"
-              />
+            <div style={{ width: "80%", height: "80%" }}>
+              <img src={imageUri} alt="userImage" />
               <button onClick={handleUsePhoto}>Use Photo</button>
               <button onClick={handleTakeAnotherPhoto}>
                 Take another photo
@@ -66,6 +61,12 @@ export default function AdminScreen() {
               onTakePhotoAnimationDone={handleTakePhoto}
             />
           )}
+          <img
+            src={templateImage}
+            style={{ display: "none" }}
+            alt="template"
+            id="user-image"
+          />
           <canvas id="myCanvas" style={{ display: "none" }}></canvas>
         </div>
       );
