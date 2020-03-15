@@ -65,7 +65,9 @@ export default function AdminScreen() {
           )}
           <img
             src={templateImage}
-            style={{ width: "80%", height: "80%", display: "none" }}
+            style={{ display: "none" }}
+            width="1920"
+            height="1080"
             alt="template"
             id="user-image"
           />
