@@ -60,7 +60,7 @@ export default function PatientsGrid({ onPatientClick }) {
       <Grid container component="main" className={classes.root}>
         <Grid
           item
-          xs={false}
+          xs={12}
           id={1}
           xl={5}
           onClick={e => handlePatientClick(e)}
@@ -74,7 +74,7 @@ export default function PatientsGrid({ onPatientClick }) {
         </Grid>
         <Grid
           item
-          xs={false}
+          xs={12}
           id={2}
           xl={5}
           className={classes.image}
@@ -88,7 +88,7 @@ export default function PatientsGrid({ onPatientClick }) {
         </Grid>
         <Grid
           item
-          xs={false}
+          xs={12}
           id={3}
           xl={5}
           className={classes.image}
@@ -102,7 +102,7 @@ export default function PatientsGrid({ onPatientClick }) {
         </Grid>
         <Grid
           item
-          xs={false}
+          xs={12}
           id={4}
           xl={5}
           className={classes.image}

@@ -29,6 +29,7 @@ export default function AdminScreen() {
     setTemplateImage(dataUri);
     const filteredImageUri = filterImage();
     setImageUri(filteredImageUri);
+  }
   // }
 
   // useEffect(() => {
