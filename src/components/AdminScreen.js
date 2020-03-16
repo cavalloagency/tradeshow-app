@@ -7,7 +7,6 @@ import PatientsGrid from "./Admin/PatientsGrid";
 import Signout from "./Signout";
 import AdBuilding from "./Admin/AdBuilding";
 import { filterImage } from "../imageTransformer";
-import personalImage from "../assets/images/photo_2020-03-14_10-52-10.jpg";
 import Next from "./Next";
 
 export default function AdminScreen() {
@@ -30,13 +29,13 @@ export default function AdminScreen() {
     setTemplateImage(dataUri);
     const filteredImageUri = filterImage();
     setImageUri(filteredImageUri);
-  }
+  // }
 
-  useEffect(() => {
-    setTemplateImage(personalImage);
-    const filteredImageUri = filterImage();
-    setImageUri(filteredImageUri);
-  }, []);
+  // useEffect(() => {
+  //   setTemplateImage(dataUri);
+  //   const filteredImageUri = filterImage();
+  //   setImageUri(filteredImageUri);
+  // }, []);
 
   const moveToNextStep = () => {
     const stepState = { ...adCreationSteps };

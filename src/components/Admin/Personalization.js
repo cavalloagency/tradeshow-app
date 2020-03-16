@@ -113,7 +113,6 @@ export default function Personalization({ onPatientClick }) {
             inputProps={{ "aria-label": "primary checkbox" }}
           />
         </Grid>
-        <Next />
       </Grid>
     </div>
   );
