@@ -13,8 +13,10 @@ export default function AdminScreen() {
   const [imageUri, setImageUri] = useState(null);
   const [templateImage, setTemplateImage] = useState(null);
   const [currentStep, setCurrentStep] = useState(0);
-  const [selectedPatient, setSelectedPatient] = useState(null);
-  const [selectedPersonalization, setSelectedPersonalization] = useState(null);
+  const [selectedPatientId, setSelectedPatientId] = useState(null);
+  const [selectedPersonalizationId, setSelectedPersonalizationId] = useState(
+    null
+  );
 
   const [adCreationSteps, setAdCreationSteps] = useState({
     stepOne: true,
@@ -25,18 +27,10 @@ export default function AdminScreen() {
   });
 
   function handleTakePhoto(dataUri) {
-    // Do stuff with the photo...
     setTemplateImage(dataUri);
     const filteredImageUri = filterImage();
     setImageUri(filteredImageUri);
   }
-  // }
-
-  // useEffect(() => {
-  //   setTemplateImage(dataUri);
-  //   const filteredImageUri = filterImage();
-  //   setImageUri(filteredImageUri);
-  // }, []);
 
   const moveToNextStep = () => {
     const stepState = { ...adCreationSteps };
@@ -87,17 +81,16 @@ export default function AdminScreen() {
     setCurrentStep(0);
   };
 
-  // const handleUsePhoto = () => {
-  //   const stepState = { ...adCreationSteps };
-
-  //   stepState.stepOne = false;
-  //   stepState.stepTwo = true;
-
-  //   setAdCreationSteps(stepState);
-  // };
-
   const handleTakeAnotherPhoto = () => {
     setImageUri(null);
+  };
+
+  const handlePatientClick = patientId => {
+    setSelectedPatientId(patientId);
+  };
+
+  const handlePersonalizationClick = personalizationId => {
+    setSelectedPersonalizationId(personalizationId);
   };
 
   const stepDisplay = () => {
@@ -113,7 +106,6 @@ export default function AdminScreen() {
                 style={{ width: "100%", height: "100vh" }}
                 alt="userImage"
               />
-              {/* <Button onClick={handleUsePhoto}>Use Photo</Button> */}
               <Button onClick={handleTakeAnotherPhoto}>
                 Take another photo
               </Button>
@@ -138,9 +130,19 @@ export default function AdminScreen() {
         </div>
       );
     } else if (stepState.stepTwo) {
-      return <PatientsGrid />;
+      return (
+        <PatientsGrid
+          handlePatientClick={handlePatientClick}
+          selectedPatientId={selectedPatientId}
+        />
+      );
     } else if (stepState.stepThree) {
-      return <Personalization />;
+      return (
+        <Personalization
+          handlePersonalizationClick={handlePersonalizationClick}
+          selectedPersonalizationId={selectedPersonalizationId}
+        />
+      );
     } else if (stepState.stepFour) {
       return <AdBuilding />;
     }

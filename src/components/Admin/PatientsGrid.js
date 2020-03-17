@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import { Typography, CssBaseline } from "@material-ui/core";
-import Checkbox from "@material-ui/core/Checkbox";
-import Next from "../Next";
+import { data } from "../../firebase";
+import PatientsGridItem from "../PatientsGridItem";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -44,21 +44,52 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function PatientsGrid({ onPatientClick }) {
+export default function PatientsGrid({
+  handlePatientClick,
+  selectedPatientId
+}) {
   const classes = useStyles();
-  const [selectedPatientId, setSelectedPatientId] = useState(null);
 
-  const handlePatientClick = event => {
-    console.log("Event: ", event.target.id);
-    setSelectedPatientId(event.target.id);
-  };
+  const [patients, setPatients] = useState(null);
+
+  useEffect(() => {
+    data
+      .collection("patients")
+      .get()
+      .then(snapshot => {
+        const patients = snapshot.docs.map(doc => {
+          return {
+            id: doc.id,
+            ...doc.data()
+          };
+        });
+
+        setPatients(patients);
+      });
+  }, []);
 
   return (
     <div>
       <Typography>Patients Grid</Typography>
       <CssBaseline />
       <Grid container component="main" className={classes.root}>
-        <Grid
+        {patients
+          ? patients.map(patient => (
+              <PatientsGridItem
+                key={patient.id}
+                patient={patient}
+                handlePatientClick={handlePatientClick}
+                selectedPatientId={selectedPatientId}
+              />
+            ))
+          : null}
+      </Grid>
+    </div>
+  );
+}
+
+/* 
+ <Grid
           item
           xs={12}
           id={1}
@@ -114,7 +145,4 @@ export default function PatientsGrid({ onPatientClick }) {
             inputProps={{ "aria-label": "primary checkbox" }}
           />
         </Grid>
-      </Grid>
-    </div>
-  );
-}
+*/
