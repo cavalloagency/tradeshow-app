@@ -8,15 +8,28 @@ import Signout from "./Signout";
 import AdBuilding from "./Admin/AdBuilding";
 import { filterImage } from "../imageTransformer";
 import Next from "./Next";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles({
+  container: {
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    overflow: "hidden"
+  }
+});
 
 export default function AdminScreen() {
+  const styles = useStyles();
   const [imageUri, setImageUri] = useState(null);
   const [templateImage, setTemplateImage] = useState(null);
   const [currentStep, setCurrentStep] = useState(0);
-  const [selectedPatientId, setSelectedPatientId] = useState(null);
-  const [selectedPersonalizationId, setSelectedPersonalizationId] = useState(
+  const [selectedPatient, setSelectedPatientId] = useState(null);
+  const [selectedPersonalization, setSelectedPersonalizationId] = useState(
     null
   );
+  const [signature, setSignature] = useState();
 
   const [adCreationSteps, setAdCreationSteps] = useState({
     stepOne: true,
@@ -85,12 +98,12 @@ export default function AdminScreen() {
     setImageUri(null);
   };
 
-  const handlePatientClick = patientId => {
-    setSelectedPatientId(patientId);
+  const handlePatientClick = patient => {
+    setSelectedPatientId(patient);
   };
 
-  const handlePersonalizationClick = personalizationId => {
-    setSelectedPersonalizationId(personalizationId);
+  const handlePersonalizationClick = personalization => {
+    setSelectedPersonalizationId(personalization);
   };
 
   const stepDisplay = () => {
@@ -130,28 +143,43 @@ export default function AdminScreen() {
         </div>
       );
     } else if (stepState.stepTwo) {
+      console.log("[SelectedPatientAdmin]", selectedPatient);
       return (
         <PatientsGrid
           handlePatientClick={handlePatientClick}
-          selectedPatientId={selectedPatientId}
+          selectedPatientId={selectedPatient ? selectedPatient.id : null}
         />
       );
     } else if (stepState.stepThree) {
+      console.log("[SelectedPersonalizationAdmin]", selectedPersonalization);
       return (
         <Personalization
           handlePersonalizationClick={handlePersonalizationClick}
-          selectedPersonalizationId={selectedPersonalizationId}
+          selectedPersonalizationId={
+            selectedPersonalization ? selectedPersonalization.id : null
+          }
+          setSignatureHandler={setSignature}
         />
       );
     } else if (stepState.stepFour) {
-      return <AdBuilding />;
+      return (
+        <AdBuilding
+          patient={selectedPatient}
+          personalization={selectedPersonalization}
+          signature={signature}
+          userImage={imageUri}
+        />
+      );
     }
   };
 
   return (
-    <div style={{ height: "100vh", backgroundColor: "lightblue" }}>
-      <Signout />
-      <Button onClick={handleStartAgainClick}>Start Again</Button>
+    <div classNames={styles.container}>
+      <div>
+        <Signout />
+
+        <Button onClick={handleStartAgainClick}>Start Again</Button>
+      </div>
       {stepDisplay()}
       <Next onButtonClick={moveToNextStep} />
     </div>

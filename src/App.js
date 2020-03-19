@@ -5,6 +5,7 @@ import PublicScreen from "./components/PublicScreen";
 import AuthProvider from "./components/Auth";
 import Login from "./components/Login";
 import PrivateRoute from "./components/PrivateRoute";
+import "./App.css";
 
 function App() {
   return (

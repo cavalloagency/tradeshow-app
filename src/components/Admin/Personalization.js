@@ -2,6 +2,11 @@ import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import { Typography, CssBaseline } from "@material-ui/core";
+import Card from "@material-ui/core/Card";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import CardMedia from "@material-ui/core/CardMedia";
 import Checkbox from "@material-ui/core/Checkbox";
 import Paper from "@material-ui/core/Paper";
 import SignaturePad from "../SignaturePad";
@@ -10,7 +15,7 @@ import { data } from "../../firebase";
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
-    height: "90vh"
+    height: "100%"
   },
   paper: {
     cursor: "pointer",
@@ -20,8 +25,10 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(1),
     padding: theme.spacing(2),
     textAlign: "center",
-    color: theme.palette.text.primary,
-    height: "40%"
+    color: theme.palette.text.primary
+  },
+  media: {
+    height: 140
   },
   card: {
     backgroundColor:
@@ -34,12 +41,21 @@ const useStyles = makeStyles(theme => ({
     "&:hover": {
       opacity: "0.65"
     }
+  },
+  signature: {
+    display: "flex",
+    alignContent: "flex-end",
+    color: "gray"
+  },
+  signatureText: {
+    color: "lightgray"
   }
 }));
 
 export default function Personalization({
   handlePersonalizationClick,
-  selectedPersonalizationId
+  selectedPersonalizationId,
+  setSignatureHandler
 }) {
   const classes = useStyles();
   const [personalizations, setPersonalizations] = useState(null);
@@ -61,33 +77,52 @@ export default function Personalization({
   }, []);
 
   return (
-    <div>
-      <Typography>Personalization Grid</Typography>
-      <CssBaseline />
-      <Grid container component="main" className={classes.root}>
+    <div className={classes.root}>
+      <Grid container spacing={0}>
+        <CssBaseline />
+        {/* <Grid container component="main" className={classes.root}> */}
         {personalizations
           ? personalizations.map(personalization => (
               <Grid
                 item
                 xs={12}
                 id={personalization.id}
-                xl={5}
-                onClick={() => handlePersonalizationClick(personalization.id)}
+                xl={6}
+                onClick={() => handlePersonalizationClick(personalization)}
                 className={`${classes.image}`}
               >
-                <Checkbox
-                  checked={selectedPersonalizationId == personalization.id}
-                  value="primary"
-                  inputProps={{ "aria-label": "primary checkbox" }}
-                />
-                <Paper className={classes.paper} elevation={3}>
-                  <Typography variant="h3">{personalization.title}</Typography>
-                  <Typography variant="p">{personalization.content}</Typography>
-                </Paper>
+                <Card className={classes.paper}>
+                  <CardActions>
+                    <Checkbox
+                      checked={selectedPersonalizationId == personalization.id}
+                      value="primary"
+                      inputProps={{ "aria-label": "primary checkbox" }}
+                    />
+                  </CardActions>
+                  <CardActionArea>
+                    <CardContent>
+                      <Typography variant="body1">
+                        {personalization.content}
+                      </Typography>
+                    </CardContent>
+                    <CardMedia className={classes.media} title="logo">
+                      <img
+                        src={personalization.logoUrl}
+                        alt="logo"
+                        height="140"
+                      />
+                    </CardMedia>
+                  </CardActionArea>
+                </Card>
               </Grid>
             ))
           : null}
-        <SignaturePad />
+        <Grid item xl={12} className={classes.signature}>
+          <SignaturePad onSignatureEnd={setSignatureHandler} />
+        </Grid>
+        <Grid item xl={12} className={classes.signatureText}>
+          <Typography variant="h4">Signature</Typography>
+        </Grid>
       </Grid>
     </div>
   );

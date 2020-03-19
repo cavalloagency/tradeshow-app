@@ -27,20 +27,6 @@ const useStyles = makeStyles(theme => ({
       color: "white",
       backgroundColor: theme.palette.text.secondary
     }
-  },
-  image: {
-    backgroundImage: "url(https://source.unsplash.com/random)",
-    backgroundRepeat: "no-repeat",
-    backgroundColor:
-      theme.palette.type === "dark"
-        ? theme.palette.grey[900]
-        : theme.palette.grey[50],
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    margin: "5px",
-    "&:hover": {
-      opacity: "0.65"
-    }
   }
 }));
 
@@ -51,6 +37,7 @@ export default function PatientsGrid({
   const classes = useStyles();
 
   const [patients, setPatients] = useState(null);
+  console.log("[SelectedPatient]", selectedPatientId);
 
   useEffect(() => {
     data
@@ -70,7 +57,6 @@ export default function PatientsGrid({
 
   return (
     <div>
-      <Typography>Patients Grid</Typography>
       <CssBaseline />
       <Grid container component="main" className={classes.root}>
         {patients
