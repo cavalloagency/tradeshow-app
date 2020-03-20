@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 html {
   min-height: 100%; /* make sure it is at least as tall as the viewport */
   position: relative;
@@ -5,6 +9,7 @@ html {
 body {
   min-height: 100vh;
   overflow: "hidden";
+  background-color: #47195c;
 }
 
 #root {

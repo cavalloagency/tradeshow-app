@@ -1,32 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-import { Typography, CssBaseline } from "@material-ui/core";
 import { data } from "../../firebase";
 import PatientsGridItem from "../PatientsGridItem";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    flexGrow: 1,
-    height: "90vh"
-  },
-  paper: {
-    cursor: "pointer",
-    border: 0,
-    borderRadius: 3,
-    boxShadow: "0 3px 5px 2px gray",
-    padding: theme.spacing(2),
-    textAlign: "center",
-    color: theme.palette.text.primary,
-    height: "50%",
-    "&:hover": {
-      color: "white",
-      backgroundColor: theme.palette.text.secondary
-    },
-    "&.active": {
-      color: "white",
-      backgroundColor: theme.palette.text.secondary
-    }
+    width: "100%",
+    height: "100%",
+    display: "flex",
+    margin: "auto",
+    padding: theme.spacing(2)
   }
 }));
 
@@ -56,9 +40,8 @@ export default function PatientsGrid({
   }, []);
 
   return (
-    <div>
-      <CssBaseline />
-      <Grid container component="main" className={classes.root}>
+    <>
+      <Grid container className={classes.root}>
         {patients
           ? patients.map(patient => (
               <PatientsGridItem
@@ -70,65 +53,6 @@ export default function PatientsGrid({
             ))
           : null}
       </Grid>
-    </div>
+    </>
   );
 }
-
-/* 
- <Grid
-          item
-          xs={12}
-          id={1}
-          xl={5}
-          onClick={e => handlePatientClick(e)}
-          className={`${classes.image}`}
-        >
-          <Checkbox
-            checked={parseInt(selectedPatientId) === 1}
-            value="primary"
-            inputProps={{ "aria-label": "primary checkbox" }}
-          />
-        </Grid>
-        <Grid
-          item
-          xs={12}
-          id={2}
-          xl={5}
-          className={classes.image}
-          onClick={e => handlePatientClick(e)}
-        >
-          <Checkbox
-            checked={parseInt(selectedPatientId) === 2}
-            value="primary"
-            inputProps={{ "aria-label": "primary checkbox" }}
-          />
-        </Grid>
-        <Grid
-          item
-          xs={12}
-          id={3}
-          xl={5}
-          className={classes.image}
-          onClick={e => handlePatientClick(e)}
-        >
-          <Checkbox
-            checked={parseInt(selectedPatientId) === 3}
-            value="primary"
-            inputProps={{ "aria-label": "primary checkbox" }}
-          />
-        </Grid>
-        <Grid
-          item
-          xs={12}
-          id={4}
-          xl={5}
-          className={classes.image}
-          onClick={e => handlePatientClick(e)}
-        >
-          <Checkbox
-            checked={parseInt(selectedPatientId) === 4}
-            value="primary"
-            inputProps={{ "aria-label": "primary checkbox" }}
-          />
-        </Grid>
-*/

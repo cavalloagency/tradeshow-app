@@ -8,7 +8,7 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Checkbox from "@material-ui/core/Checkbox";
-import Paper from "@material-ui/core/Paper";
+
 import SignaturePad from "../SignaturePad";
 import { data } from "../../firebase";
 
@@ -29,18 +29,6 @@ const useStyles = makeStyles(theme => ({
   },
   media: {
     height: 140
-  },
-  card: {
-    backgroundColor:
-      theme.palette.type === "dark"
-        ? theme.palette.grey[900]
-        : theme.palette.grey[50],
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    margin: "5px",
-    "&:hover": {
-      opacity: "0.65"
-    }
   },
   signature: {
     display: "flex",

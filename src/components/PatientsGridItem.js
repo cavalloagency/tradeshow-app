@@ -13,7 +13,8 @@ const useStyles = makeStyles(theme => ({
         : theme.palette.grey[50],
     backgroundSize: "cover",
     backgroundPosition: "center",
-    margin: "5px",
+    margin: theme.spacing(1),
+    height: 400,
     "&:hover": {
       opacity: "0.65"
     }
@@ -32,7 +33,7 @@ export default function PatientsGridItem({
       item
       xs={12}
       id={patient.id}
-      xl={5}
+      xl={3}
       onClick={() => handlePatientClick(patient)}
       className={`${classes.image}`}
     >

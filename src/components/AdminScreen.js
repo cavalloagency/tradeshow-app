@@ -9,14 +9,22 @@ import AdBuilding from "./Admin/AdBuilding";
 import { filterImage } from "../imageTransformer";
 import Next from "./Next";
 import { makeStyles } from "@material-ui/core/styles";
+import personalImage from "../assets/images/photo_2020-03-14_10-52-10.jpg";
 
 const useStyles = makeStyles({
   container: {
-    top: 0,
-    bottom: 0,
-    left: 0,
-    right: 0,
-    overflow: "hidden"
+    height: "100%",
+    maxHeight: "100vh",
+    background: "#ad5389" /* fallback for old browsers */,
+    background:
+      " -webkit-linear-gradient(to right, #ad5389, #3c1053)" /* Chrome 10-25, Safari 5.1-6 */,
+    background:
+      "linear-gradient(to right, #ad5389, #3c1053)" /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  },
+  image: {
+    width: "100%",
+    height: "-webkit-fill-available",
+    objectFit: "contain"
   }
 });
 
@@ -38,6 +46,12 @@ export default function AdminScreen() {
     stepFour: false,
     stepFive: false
   });
+
+  // useEffect(() => {
+  //   setTemplateImage(personalImage);
+  //   const filteredImageUri = filterImage();
+  //   setImageUri(filteredImageUri);
+  // }, []);
 
   function handleTakePhoto(dataUri) {
     setTemplateImage(dataUri);
@@ -111,14 +125,10 @@ export default function AdminScreen() {
 
     if (stepState.stepOne) {
       return (
-        <div style={{ height: "100%" }}>
+        <>
           {imageUri ? (
             <div>
-              <img
-                src={imageUri}
-                style={{ width: "100%", height: "100vh" }}
-                alt="userImage"
-              />
+              <img src={imageUri} className={styles.image} alt="userImage" />
               <Button onClick={handleTakeAnotherPhoto}>
                 Take another photo
               </Button>
@@ -140,7 +150,7 @@ export default function AdminScreen() {
             id="user-image"
           />
           <canvas id="myCanvas" style={{ display: "none" }}></canvas>
-        </div>
+        </>
       );
     } else if (stepState.stepTwo) {
       console.log("[SelectedPatientAdmin]", selectedPatient);
@@ -174,12 +184,7 @@ export default function AdminScreen() {
   };
 
   return (
-    <div classNames={styles.container}>
-      <div>
-        <Signout />
-
-        <Button onClick={handleStartAgainClick}>Start Again</Button>
-      </div>
+    <div className={styles.container}>
       {stepDisplay()}
       <Next onButtonClick={moveToNextStep} />
     </div>
