@@ -141,6 +141,7 @@ export default function AdminScreen() {
               imageCompression={0.97}
               isMaxResolution={true}
               idealResolution={{ width: 1920, height: 1080 }}
+              isDisplayStartCameraError={false}
             />
           )}
           <img

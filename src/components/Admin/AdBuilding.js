@@ -2,8 +2,9 @@ import React from "react";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
+import testImage from "../../assets/images/pngguru.com.png";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
     height: "100%",
@@ -13,6 +14,8 @@ const useStyles = makeStyles({
     height: "100%"
   },
   leftContainer: {
+    position: "relative",
+    width: "100%",
     height: "100%",
     background: "#ad5389" /* fallback for old browsers */,
     background:
@@ -21,9 +24,11 @@ const useStyles = makeStyles({
       "linear-gradient(to right, #3c1053, #ad5389)" /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   },
   rightContainer: {
+    position: "relative",
+    width: "100%",
     display: "flex",
     flexFlow: "column",
-    justifyContent: "flex-end",
+    justifyContent: "space-between",
     height: "100%",
     background: "#ADA996" /* fallback for old browsers */,
     background:
@@ -32,15 +37,21 @@ const useStyles = makeStyles({
       "linear-gradient(to right, #EAEAEA, #DBDBDB, #F2F2F2, #ADA996)" /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   },
   images: {
-    objectFit: "contain",
     width: "100%",
-    height: "auto"
+    height: "100%",
+    position: "absolute",
+    objectFit: "cover"
   },
   logoImage: {
     width: "200px",
     height: "fit-content"
   },
   userImage: {
+    position: "absolute",
+    height: "100%",
+    objectFit: "contain"
+  },
+  patientImage: {
     position: "absolute",
     height: "100%",
     objectFit: "contain"
@@ -60,8 +71,21 @@ const useStyles = makeStyles({
     width: "100%",
     height: "fit-content",
     position: "relative"
+  },
+  userText: {
+    color: "#3c1053",
+    fontWeight: "bolder",
+    position: "relative",
+    padding: theme.spacing(3)
+  },
+  patientText: {
+    color: "#fff",
+    textAlign: "right",
+    fontWeight: "bolder",
+    position: "relative",
+    padding: theme.spacing(2)
   }
-});
+}));
 
 export default function AdBuilding({
   userImage,
@@ -74,22 +98,36 @@ export default function AdBuilding({
     <div className={classes.root}>
       <Grid container className={classes.container}>
         <Grid item xl={6} className={classes.leftContainer}>
-          <img className={classes.images} alt="patient" src={patient.url} />
+          <img className={classes.images} alt="patient" src={testImage} />
+          <Grid item className={classes.patientText}>
+            <Typography variant="h2">MADE FOR</Typography>
+            <Typography variant="h2">MADE FOR</Typography>
+            <Typography variant="h2">MADE FOR</Typography>
+          </Grid>
         </Grid>
         <Grid container xl={6} className={classes.rightContainer}>
-          <img className={classes.userImage} alt="user" src={userImage} />
-          <Grid item className={classes.signature}>
-            <img alt="signature" src={signature} />
+          <img className={classes.images} alt="user" src={testImage} />
+          <Grid item className={classes.userText}>
+            <Typography variant="h2">SELECTIVITY</Typography>
+            <Typography variant="h2">REMISSION</Typography>
+            <Typography variant="h1">NOW</Typography>
           </Grid>
-          <Grid item className={classes.personalization}>
-            <Typography variant={"body1"}>{personalization.content}</Typography>
-            <img
-              width="200"
-              height="200"
-              className={classes.logoImage}
-              alt="personalization"
-              src={personalization.logoUrl}
-            />
+          <Grid item>
+            <Grid item className={classes.signature}>
+              <img alt="signature" src={signature} />
+            </Grid>
+            <Grid item className={classes.personalization}>
+              <Typography variant={"body1"}>
+                {personalization.content}
+              </Typography>
+              <img
+                width="200"
+                height="200"
+                className={classes.logoImage}
+                alt="personalization"
+                src={personalization.logoUrl}
+              />
+            </Grid>
           </Grid>
         </Grid>
       </Grid>
