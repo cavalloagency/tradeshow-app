@@ -5,13 +5,14 @@ import Checkbox from "@material-ui/core/Checkbox";
 
 const useStyles = makeStyles(theme => ({
   image: props => ({
-    background: `url(${props.patient.url}) no-repeat center`,
-
+    backgroundImage: `url(${props.patient.url})`,
+    backgroundRepeat: "no-repeat",
     // backgroundColor:
     //   theme.palette.type === "dark"
     //     ? theme.palette.grey[900]
     //     : theme.palette.grey[50],
-    backgroundSize: "calc(100% - 8px) calc(100% - 8px)",
+    backgroundSize: "contain",
+    backgroundPosition: "center",
     // margin: theme.spacing(1),
     maxHeight: 400,
     height: "auto",

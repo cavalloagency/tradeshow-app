@@ -73,7 +73,8 @@ const useStyles = makeStyles(theme => ({
     position: "relative",
     "& > img": {
       width: "-webkit-fill-available"
-    }
+    },
+    padding: "16px"
   },
   userText: {
     color: "#3c1053",
