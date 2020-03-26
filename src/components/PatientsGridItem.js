@@ -32,7 +32,7 @@ export default function PatientsGridItem({
       item
       xs={6}
       md={6}
-      lg={3}
+      lg={4}
       xl={3}
       id={patient.id}
       onClick={() => handlePatientClick(patient)}
