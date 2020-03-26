@@ -109,7 +109,7 @@ export default function AdBuilding({
           </Grid>
         </Grid>
         <Grid container xl={6} lg={6} md={6} className={classes.rightContainer}>
-          <img className={classes.images} alt="user" src={testImage} />
+          <img className={classes.images} alt="user" src={userImage} />
           <Grid item className={classes.userText}>
             <Typography variant="h2">SELECTIVITY</Typography>
             <Typography variant="h2">REMISSION</Typography>
