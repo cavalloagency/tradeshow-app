@@ -119,7 +119,14 @@ export default function AdBuilding({
             <Grid item className={classes.signature}>
               <img alt="signature" src={signature} />
             </Grid>
-            <Grid item xl={6} lg={6} className={classes.personalization}>
+            <Grid
+              item
+              xl={6}
+              lg={6}
+              md={12}
+              sm={12}
+              className={classes.personalization}
+            >
               <Typography variant={"body1"}>
                 {personalization.content}
               </Typography>
