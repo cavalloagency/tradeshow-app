@@ -68,14 +68,15 @@ export default function Personalization({
     <div className={classes.root}>
       <Grid container spacing={0}>
         <CssBaseline />
-        {/* <Grid container component="main" className={classes.root}> */}
         {personalizations
           ? personalizations.map(personalization => (
               <Grid
                 item
-                xs={12}
+                xs={6}
+                md={6}
+                lg={4}
+                xl={3}
                 id={personalization.id}
-                xl={6}
                 onClick={() => handlePersonalizationClick(personalization)}
                 className={`${classes.image}`}
               >

@@ -27,13 +27,14 @@ export default function PatientsGridItem({
   patient
 }) {
   const classes = useStyles({ patient });
-  console.log("[GridItemPatient]", patient);
   return (
     <Grid
       item
-      xs={12}
-      id={patient.id}
+      xs={6}
+      md={6}
+      lg={3}
       xl={3}
+      id={patient.id}
       onClick={() => handlePatientClick(patient)}
       className={`${classes.image}`}
     >
