@@ -70,7 +70,10 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     width: "100%",
     height: "fit-content",
-    position: "relative"
+    position: "relative",
+    "& > img": {
+      width: "-webkit-fill-available"
+    }
   },
   userText: {
     color: "#3c1053",

@@ -11,6 +11,10 @@ const useStyles = makeStyles({
     display: "flex",
     alignContent: "center",
     justifyContent: "center"
+  },
+  canvas: {
+    width: "100%",
+    height: "100%"
   }
 });
 
@@ -37,7 +41,7 @@ export default function Signature({ onSignatureEnd }) {
           canvasProps={{
             width: vw,
             height: 200,
-            className: "signatureCanvas",
+            className: `${styles.canvas}`,
             id: "signature"
           }}
           onEnd={save}
