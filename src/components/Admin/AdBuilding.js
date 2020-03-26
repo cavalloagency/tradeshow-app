@@ -63,7 +63,7 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     margin: 0,
     boxSizing: "border-box",
-    width: "50%",
+    // width: "50%",
     position: "relative"
   },
   signature: {
@@ -119,7 +119,7 @@ export default function AdBuilding({
             <Grid item className={classes.signature}>
               <img alt="signature" src={signature} />
             </Grid>
-            <Grid item className={classes.personalization}>
+            <Grid item xl={6} lg={6} className={classes.personalization}>
               <Typography variant={"body1"}>
                 {personalization.content}
               </Typography>
