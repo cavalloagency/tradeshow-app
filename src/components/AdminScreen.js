@@ -27,7 +27,7 @@ const useStyles = makeStyles({
     objectFit: "contain"
   },
   anotherPhoto: {
-    position: "absolute",
+    position: "fixed",
     left: 15,
     bottom: 15,
     backgroundColor: "rgba(255,255,255,0.6)"

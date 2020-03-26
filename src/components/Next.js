@@ -6,7 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles({
   buttonText: {
-    position: "absolute",
+    position: "fixed",
     right: 15,
     bottom: 15,
     backgroundColor: "rgba(255,255,255,0.6)",
