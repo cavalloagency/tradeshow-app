@@ -101,7 +101,7 @@ export default function AdBuilding({
     <div className={classes.root}>
       <Grid container className={classes.container}>
         <Grid item xl={6} lg={6} md={6} className={classes.leftContainer}>
-          <img className={classes.images} alt="patient" src={testImage} />
+          <img className={classes.images} alt="patient" src={patient.url} />
           <Grid item className={classes.patientText}>
             <Typography variant="h2">MADE FOR</Typography>
             <Typography variant="h2">MADE FOR</Typography>
@@ -122,7 +122,7 @@ export default function AdBuilding({
             <Grid
               item
               xl={6}
-              lg={6}
+              lg={12}
               md={12}
               sm={12}
               className={classes.personalization}

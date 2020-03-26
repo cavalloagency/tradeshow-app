@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Camera, { IMAGE_TYPES } from "react-html5-camera-photo";
 import "react-html5-camera-photo/build/css/index.css";
 import Button from "@material-ui/core/Button";
@@ -9,17 +9,11 @@ import AdBuilding from "./Admin/AdBuilding";
 import { filterImage } from "../imageTransformer";
 import Next from "./Next";
 import { makeStyles } from "@material-ui/core/styles";
-import personalImage from "../assets/images/photo_2020-03-14_10-52-10.jpg";
 
 const useStyles = makeStyles({
   container: {
     height: "100%",
-    maxHeight: "100vh",
-    background: "#ad5389" /* fallback for old browsers */,
-    background:
-      " -webkit-linear-gradient(to right, #ad5389, #3c1053)" /* Chrome 10-25, Safari 5.1-6 */,
-    background:
-      "linear-gradient(to right, #ad5389, #3c1053)" /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    maxHeight: "100vh"
   },
   image: {
     width: "100%",
