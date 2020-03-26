@@ -5,23 +5,24 @@ import Box from "@material-ui/core/Box";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles({
-  root: {
-    display: "flex",
-    justifyContent: "flex-end",
-    left: 0,
-    bottom: "50px",
-    position: "relative"
+  buttonText: {
+    position: "absolute",
+    right: 15,
+    bottom: 15,
+    backgroundColor: "rgba(255,255,255,0.6)",
+    color: "black"
   }
 });
 
 export default function Next({ onButtonClick }) {
   const styles = useStyles();
   return (
-    <Box className={styles.root}>
-      <Button onClick={onButtonClick}>
-        Next
-        <NavigateNextIcon />
-      </Button>
-    </Box>
+    <Button
+      className={styles.buttonText}
+      onClick={onButtonClick}
+      endIcon={<NavigateNextIcon color="action" />}
+    >
+      Next
+    </Button>
   );
 }

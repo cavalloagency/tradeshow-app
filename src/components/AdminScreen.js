@@ -25,6 +25,12 @@ const useStyles = makeStyles({
     width: "100%",
     height: "-webkit-fill-available",
     objectFit: "contain"
+  },
+  anotherPhoto: {
+    position: "absolute",
+    left: 15,
+    bottom: 15,
+    backgroundColor: "rgba(255,255,255,0.6)"
   }
 });
 
@@ -129,7 +135,10 @@ export default function AdminScreen() {
           {imageUri ? (
             <div>
               <img src={imageUri} className={styles.image} alt="userImage" />
-              <Button onClick={handleTakeAnotherPhoto}>
+              <Button
+                className={styles.anotherPhoto}
+                onClick={handleTakeAnotherPhoto}
+              >
                 Take another photo
               </Button>
             </div>
